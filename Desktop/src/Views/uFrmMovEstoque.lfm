@@ -1,0 +1,281 @@
+object frmMovEstoque: TfrmMovEstoque
+  Left = 0
+  Height = 600
+  Top = 0
+  Width = 850
+  Caption = 'Movimentação de Estoque'
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  LCLVersion = '3.0.0.0'
+  object pnlTopo: TPanel
+    Left = 0
+    Height = 50
+    Top = 0
+    Width = 850
+    Align = alTop
+    Color = clNavy
+    ParentColor = False
+    TabOrder = 0
+    object lblTitulo: TLabel
+      Left = 16
+      Height = 24
+      Top = 12
+      Width = 300
+      Caption = 'Movimentação de Estoque'
+      Font.Color = clWhite
+      Font.Height = -20
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+  end
+  object pnlFiltros: TPanel
+    Left = 0
+    Height = 40
+    Top = 50
+    Width = 850
+    Align = alTop
+    TabOrder = 1
+    object lblDataInicio: TLabel
+      Left = 8
+      Height = 16
+      Top = 10
+      Width = 30
+      Caption = 'De:'
+    end
+    object dtpInicio: TDateTimePicker
+      Left = 40
+      Height = 25
+      Top = 7
+      Width = 110
+    end
+    object lblDataFim: TLabel
+      Left = 160
+      Height = 16
+      Top = 10
+      Width = 25
+      Caption = 'Até:'
+    end
+    object dtpFim: TDateTimePicker
+      Left = 190
+      Height = 25
+      Top = 7
+      Width = 110
+    end
+    object lblTipoFiltro: TLabel
+      Left = 316
+      Height = 16
+      Top = 10
+      Width = 30
+      Caption = 'Tipo:'
+    end
+    object cmbTipoFiltro: TComboBox
+      Left = 350
+      Height = 25
+      Top = 7
+      Width = 120
+      Items.Strings = (
+        'Todos'
+        'Entrada'
+        'Saída'
+        'Ajuste'
+        'Inventário'
+      )
+      ItemIndex = 0
+      Style = csDropDownList
+      TabOrder = 0
+    end
+    object btnFiltrar: TBitBtn
+      Left = 490
+      Height = 28
+      Top = 6
+      Width = 80
+      Caption = 'Filtrar'
+      OnClick = btnFiltrarClick
+      TabOrder = 1
+    end
+  end
+  object pnlBotoes: TPanel
+    Left = 0
+    Height = 40
+    Top = 90
+    Width = 850
+    Align = alTop
+    TabOrder = 2
+    object btnNovaMovimentacao: TBitBtn
+      Left = 8
+      Height = 32
+      Top = 4
+      Width = 150
+      Caption = 'Nova Movimentação'
+      OnClick = btnNovaMovimentacaoClick
+      TabOrder = 0
+    end
+    object btnFechar: TBitBtn
+      Left = 750
+      Height = 32
+      Top = 4
+      Width = 90
+      Caption = 'Fechar'
+      OnClick = btnFecharClick
+      TabOrder = 1
+    end
+  end
+  object dbGrid: TDBGrid
+    Left = 0
+    Height = 250
+    Top = 130
+    Width = 850
+    Align = alTop
+    DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+    ReadOnly = True
+    TabOrder = 3
+  end
+  object pnlMovimentacao: TPanel
+    Left = 0
+    Height = 220
+    Top = 380
+    Width = 850
+    Align = alBottom
+    BevelOuter = bvLowered
+    TabOrder = 4
+    Visible = False
+    object lblTipo: TLabel
+      Left = 16
+      Height = 16
+      Top = 10
+      Width = 30
+      Caption = 'Tipo:'
+    end
+    object cmbTipo: TComboBox
+      Left = 16
+      Height = 25
+      Top = 28
+      Width = 120
+      Items.Strings = (
+        'Entrada'
+        'Saída'
+        'Ajuste'
+        'Inventário'
+      )
+      ItemIndex = 0
+      Style = csDropDownList
+      TabOrder = 0
+    end
+    object lblProduto: TLabel
+      Left = 150
+      Height = 16
+      Top = 10
+      Width = 120
+      Caption = 'Código/Barras Produto:'
+    end
+    object edtProduto: TEdit
+      Left = 150
+      Height = 25
+      Top = 28
+      Width = 150
+      TabOrder = 1
+    end
+    object btnBuscarProduto: TBitBtn
+      Left = 308
+      Height = 27
+      Top = 28
+      Width = 30
+      Caption = '...'
+      OnClick = btnBuscarProdutoClick
+      TabOrder = 2
+    end
+    object lblProdutoDesc: TLabel
+      Left = 350
+      Height = 16
+      Top = 32
+      Width = 300
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblQuantidade: TLabel
+      Left = 16
+      Height = 16
+      Top = 62
+      Width = 70
+      Caption = 'Quantidade:'
+    end
+    object edtQuantidade: TEdit
+      Left = 16
+      Height = 25
+      Top = 80
+      Width = 100
+      Alignment = taRightJustify
+      TabOrder = 3
+      Text = '0'
+    end
+    object lblCustoUnit: TLabel
+      Left = 130
+      Height = 16
+      Top = 62
+      Width = 80
+      Caption = 'Custo Unit.:'
+    end
+    object edtCustoUnit: TEdit
+      Left = 130
+      Height = 25
+      Top = 80
+      Width = 100
+      Alignment = taRightJustify
+      TabOrder = 4
+      Text = '0,00'
+    end
+    object lblDocumento: TLabel
+      Left = 244
+      Height = 16
+      Top = 62
+      Width = 70
+      Caption = 'Documento:'
+    end
+    object edtDocumento: TEdit
+      Left = 244
+      Height = 25
+      Top = 80
+      Width = 150
+      TabOrder = 5
+    end
+    object lblObservacao: TLabel
+      Left = 16
+      Height = 16
+      Top = 114
+      Width = 70
+      Caption = 'Observação:'
+    end
+    object mmoObservacao: TMemo
+      Left = 16
+      Height = 50
+      Top = 132
+      Width = 500
+      TabOrder = 6
+    end
+    object btnConfirmar: TBitBtn
+      Left = 560
+      Height = 36
+      Top = 130
+      Width = 120
+      Caption = 'Confirmar'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnClick = btnConfirmarClick
+      TabOrder = 7
+    end
+    object btnCancelarMov: TBitBtn
+      Left = 700
+      Height = 36
+      Top = 130
+      Width = 100
+      Caption = 'Cancelar'
+      OnClick = btnCancelarMovClick
+      TabOrder = 8
+    end
+  end
+  object DataSource1: TDataSource
+    Left = 750
+    Top = 200
+  end
+end
