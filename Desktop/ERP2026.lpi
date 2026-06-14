@@ -41,6 +41,12 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
+    <RequiredPackages>
+      <Count Value="1"/>
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
     <Units>
       <Unit>
         <Filename Value="ERP2026.lpr"/>
@@ -63,6 +69,10 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
+        <Filename Value="src/Models/uFornecedor.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="src/Repositories/uRepositoryBase.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
@@ -75,6 +85,10 @@
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
+        <Filename Value="src/Services/uACBrHelper.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="src/Utils/uValidacoes.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
@@ -82,13 +96,140 @@
         <Filename Value="src/Utils/uSessao.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmLogin.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmLogin"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmPrincipal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPrincipal"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmCadastroBase.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCadastroBase"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmClientes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmClientes"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmFornecedores.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmFornecedores"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmProdutos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmProdutos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmCategorias.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCategorias"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmUsuarios.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmUsuarios"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmMovEstoque.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmMovEstoque"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmKardex.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmKardex"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmInventario.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmInventario"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmPedidoVenda.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPedidoVenda"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmListaPedidos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmListaPedidos"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmOrcamento.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmOrcamento"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmPDV.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPDV"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmContasReceber.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmContasReceber"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmContasPagar.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmContasPagar"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmNFe.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmNFe"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="src/Views/uFrmCopiloto.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCopiloto"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
-    <RequiredPackages>
-      <Count Value="1"/>
-      <Item1>
-        <PackageName Value="LCL"/>
-      </Item1>
-    </RequiredPackages>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
@@ -97,7 +238,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="src/Config;src/Models;src/Views;src/Controllers;src/Services;src/Repositories;src/DTOs;src/Utils"/>
+      <OtherUnitFiles Value="src/Config;src/Models;src/Views;src/Controllers;src/Services;src/Repositories;src/DTOs;src/Utils;../IA"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
