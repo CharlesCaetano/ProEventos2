@@ -11,7 +11,7 @@ unit uConexao;
 interface
 
 uses
-  Classes, SysUtils, IBConnection, SQLDB, SQLDBLib;
+  Classes, SysUtils, IBConnection, SQLDB;
 
 type
   { TConexao - Singleton de conexão com o banco Firebird }
