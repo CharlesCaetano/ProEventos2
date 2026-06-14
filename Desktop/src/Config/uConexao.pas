@@ -2,31 +2,24 @@ unit uConexao;
 
 {$mode objfpc}{$H+}
 
-{ ============================================================
-  ERP 2026 - Módulo de Conexão
-  Descrição: Gerenciador singleton de conexão com Firebird 5
-  Padrão: Singleton + Factory
-  ============================================================ }
-
 interface
 
 uses
   Classes, SysUtils, SQLDB, IBConnection;
 
 type
-  { TConexao - Singleton de conexão com o banco Firebird }
   TConexao = class
   private
     class var FInstance: TConexao;
-    FHost: string;
-    FDatabase: string;
-    FUser: string;
-    FPassword: string;
-    FPort: Integer;
     constructor CreatePrivate;
   public
     Connection: TIBConnection;
     Transaction: TSQLTransaction;
+    Host: string;
+    Database: string;
+    User: string;
+    Password: string;
+    Port: Integer;
 
     class function GetInstance: TConexao;
     class procedure ReleaseInstance;
@@ -40,18 +33,10 @@ type
     procedure Cancelar;
     function EmTransacao: Boolean;
 
-    property Host: string read FHost write FHost;
-    property Database: string read FDatabase write FDatabase;
-    property User: string read FUser write FUser;
-    property Password: string read FPassword write FPassword;
-    property Port: Integer read FPort write FPort;
-
     destructor Destroy; override;
   end;
 
 implementation
-
-{ TConexao }
 
 constructor TConexao.CreatePrivate;
 begin
@@ -60,13 +45,11 @@ begin
   Transaction := TSQLTransaction.Create(nil);
   Connection.Transaction := Transaction;
   Transaction.DataBase := Connection;
-
-  // Valores padrão
-  FHost := 'localhost';
-  FDatabase := 'C:\Users\Charles\Documents\ProjetoERP\Banco\dados.fdb';
-  FUser := 'SYSDBA';
-  FPassword := 'masterkey';
-  FPort := 3050;
+  Host := 'localhost';
+  Database := 'C:\Users\Charles\Documents\ProjetoERP\Banco\dados.fdb';
+  User := 'SYSDBA';
+  Password := 'masterkey';
+  Port := 3050;
 end;
 
 class function TConexao.GetInstance: TConexao;
@@ -89,10 +72,10 @@ procedure TConexao.Conectar;
 begin
   if not Connection.Connected then
   begin
-    Connection.HostName := FHost;
-    Connection.DatabaseName := FDatabase;
-    Connection.UserName := FUser;
-    Connection.Password := FPassword;
+    Connection.HostName := Host;
+    Connection.DatabaseName := Database;
+    Connection.UserName := User;
+    Connection.Password := Password;
     Connection.CharSet := 'UTF8';
     Connection.Connected := True;
   end;
