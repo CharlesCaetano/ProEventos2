@@ -18,8 +18,6 @@ type
   TConexao = class
   private
     class var FInstance: TConexao;
-    FConnection: TSQLConnector;
-    FTransaction: TSQLTransaction;
     FHost: string;
     FDatabase: string;
     FUser: string;
@@ -27,6 +25,9 @@ type
     FPort: Integer;
     constructor CreatePrivate;
   public
+    Connection: TIBConnection;
+    Transaction: TSQLTransaction;
+
     class function GetInstance: TConexao;
     class procedure ReleaseInstance;
 
@@ -39,8 +40,6 @@ type
     procedure Cancelar;
     function EmTransacao: Boolean;
 
-    property Connection: TSQLConnector read FConnection;
-    property Transaction: TSQLTransaction read FTransaction;
     property Host: string read FHost write FHost;
     property Database: string read FDatabase write FDatabase;
     property User: string read FUser write FUser;
@@ -57,11 +56,10 @@ implementation
 constructor TConexao.CreatePrivate;
 begin
   inherited Create;
-  FConnection := TSQLConnector.Create(nil);
-  FConnection.ConnectorType := 'Firebird';
-  FTransaction := TSQLTransaction.Create(nil);
-  FConnection.Transaction := FTransaction;
-  FTransaction.DataBase := FConnection;
+  Connection := TIBConnection.Create(nil);
+  Transaction := TSQLTransaction.Create(nil);
+  Connection.Transaction := Transaction;
+  Transaction.DataBase := Connection;
 
   // Valores padrão
   FHost := 'localhost';
@@ -89,56 +87,56 @@ end;
 
 procedure TConexao.Conectar;
 begin
-  if not FConnection.Connected then
+  if not Connection.Connected then
   begin
-    FConnection.HostName := FHost;
-    FConnection.DatabaseName := FDatabase;
-    FConnection.UserName := FUser;
-    FConnection.Password := FPassword;
-    FConnection.CharSet := 'UTF8';
-    FConnection.Connected := True;
+    Connection.HostName := FHost;
+    Connection.DatabaseName := FDatabase;
+    Connection.UserName := FUser;
+    Connection.Password := FPassword;
+    Connection.CharSet := 'UTF8';
+    Connection.Connected := True;
   end;
 end;
 
 procedure TConexao.Desconectar;
 begin
-  if FConnection.Connected then
-    FConnection.Connected := False;
+  if Connection.Connected then
+    Connection.Connected := False;
 end;
 
 function TConexao.Conectado: Boolean;
 begin
-  Result := FConnection.Connected;
+  Result := Connection.Connected;
 end;
 
 procedure TConexao.IniciarTransacao;
 begin
-  if not FTransaction.Active then
-    FTransaction.StartTransaction;
+  if not Transaction.Active then
+    Transaction.StartTransaction;
 end;
 
 procedure TConexao.Confirmar;
 begin
-  if FTransaction.Active then
-    FTransaction.Commit;
+  if Transaction.Active then
+    Transaction.Commit;
 end;
 
 procedure TConexao.Cancelar;
 begin
-  if FTransaction.Active then
-    FTransaction.Rollback;
+  if Transaction.Active then
+    Transaction.Rollback;
 end;
 
 function TConexao.EmTransacao: Boolean;
 begin
-  Result := FTransaction.Active;
+  Result := Transaction.Active;
 end;
 
 destructor TConexao.Destroy;
 begin
   Desconectar;
-  FTransaction.Free;
-  FConnection.Free;
+  Transaction.Free;
+  Connection.Free;
   inherited Destroy;
 end;
 
