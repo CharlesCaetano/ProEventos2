@@ -11,14 +11,14 @@ unit uConexao;
 interface
 
 uses
-  Classes, SysUtils, IBConnection, SQLDB;
+  Classes, SysUtils, SQLDB, IBConnection;
 
 type
   { TConexao - Singleton de conexão com o banco Firebird }
   TConexao = class
   private
     class var FInstance: TConexao;
-    FConnection: TIBConnection;
+    FConnection: TSQLConnector;
     FTransaction: TSQLTransaction;
     FHost: string;
     FDatabase: string;
@@ -39,7 +39,7 @@ type
     procedure Cancelar;
     function EmTransacao: Boolean;
 
-    property Connection: TIBConnection read FConnection;
+    property Connection: TSQLConnector read FConnection;
     property Transaction: TSQLTransaction read FTransaction;
     property Host: string read FHost write FHost;
     property Database: string read FDatabase write FDatabase;
@@ -57,7 +57,8 @@ implementation
 constructor TConexao.CreatePrivate;
 begin
   inherited Create;
-  FConnection := TIBConnection.Create(nil);
+  FConnection := TSQLConnector.Create(nil);
+  FConnection.ConnectorType := 'Firebird';
   FTransaction := TSQLTransaction.Create(nil);
   FConnection.Transaction := FTransaction;
   FTransaction.DataBase := FConnection;
@@ -94,7 +95,6 @@ begin
     FConnection.DatabaseName := FDatabase;
     FConnection.UserName := FUser;
     FConnection.Password := FPassword;
-    FConnection.Port := FPort;
     FConnection.CharSet := 'UTF8';
     FConnection.Connected := True;
   end;

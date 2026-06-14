@@ -11,7 +11,7 @@ unit uCopilotoERP;
 interface
 
 uses
-  Classes, SysUtils, SQLDB;
+  Classes, SysUtils, SQLDB, IBConnection;
 
 type
   TTipoPergunta = (
@@ -41,7 +41,7 @@ type
   { TCopilotoERP }
   TCopilotoERP = class
   private
-    FConnection: TIBConnection;
+    FConnection: TSQLConnector;
     FTransaction: TSQLTransaction;
     function ClassificarPergunta(const APergunta: string): TTipoPergunta;
     function GerarSQL(ATipo: TTipoPergunta; const APergunta: string): string;
@@ -49,7 +49,7 @@ type
     function ExtrairPeriodo(const APergunta: string): string;
     function ContemPalavra(const ATexto, APalavra: string): Boolean;
   public
-    constructor Create(AConnection: TIBConnection; ATransaction: TSQLTransaction);
+    constructor Create(AConnection: TSQLConnector; ATransaction: TSQLTransaction);
     function Perguntar(const APergunta: string): TRespostaCopiloto;
     function ObterSugestaoEstoque: string;
     function ObterSugestaoCompra: string;
@@ -59,7 +59,7 @@ type
 
 implementation
 
-constructor TCopilotoERP.Create(AConnection: TIBConnection; ATransaction: TSQLTransaction);
+constructor TCopilotoERP.Create(AConnection: TSQLConnector; ATransaction: TSQLTransaction);
 begin
   inherited Create;
   FConnection := AConnection;
